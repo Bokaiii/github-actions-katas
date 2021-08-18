@@ -42,7 +42,6 @@ jobs:
         path: .
   Docker-image:
     runs-on: ubuntu-latest
-    container: gradle:7-jdk11
     needs: [Build, Test]
     env:
       docker_username: ${{secrets.DOCKER_USERNAME}}
