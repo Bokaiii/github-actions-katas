@@ -4,6 +4,6 @@ jobs:
   my-job:
     runs-on: grade:6-jdk11
     steps:
-      - name: my-step
       - uses: actions/checkout@v2
+      - name: my-step
         run: ci/build-app.sh
