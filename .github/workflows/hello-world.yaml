@@ -6,4 +6,4 @@ jobs:
     steps:
       - name: my-step
       - uses:
-        run: ci/build-app.sh
+          run: ci/build-app.sh
