@@ -35,3 +35,22 @@ jobs:
         path: .
     - name: my-step
       run: bash ci/build-app.sh
+  Docker-image:
+    runs-on: ubuntu-latest
+    container: gradle:7-jdk11
+    needs:
+    - Clone-down
+    - Test
+    env:
+      docker_username: ${{secrets.DOCKER_USERNAME}}
+      docker_password: ${{secrets.DOCKER_PASSWORD}}
+    steps:
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: code
+        path: .
+    - name: build docker
+      run: bash ci/build-docker.sh
+    - name: push docker
+      run: export GIT_COMMIT="GA-$GITHUB_SHA && bash ci/push-docker.sh
